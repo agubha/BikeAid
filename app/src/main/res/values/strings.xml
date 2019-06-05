@@ -1,0 +1,156 @@
+<resources>
+    <string name="key">AIzaSyCe6eRweDPl293n2uiuxgpZqjtk0Xsi_Bs</string>
+    <string name="app_name">Bike Aid</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="location">Vancouver,Calgary,100
+    Vancouver,Seattle,100
+    Calgary,Winnipeg,100
+    Calgary,Helena,100
+    Calgary,Seattle,100
+    Winnipeg,Helena,100
+    Winnipeg,Duluth,100
+    Winnipeg,SaultSaintMarie,100
+    SaultSaintMarie,Duluth,100
+    SaultSaintMarie,Toronto,100
+    SaultSaintMarie,Montreal,100
+    Toronto,Montreal,100
+    Toronto,Pittsburgh,100
+    Montreal,Boston,100
+    Montreal,NewYork,100
+    Seattle,Helena,100
+    Seattle,Portland,100
+    Helena,Duluth,100
+    Helena,SaltLakeCity,100
+    Helena,Denver,100
+    Helena,Omaha,100
+    Duluth,Omaha,100
+    Duluth,Chicago,100
+    Chicago,Pittsburgh,100
+    Chicago,SaintLouis,100
+    Chicago,Omaha,100
+    Pittsburgh,NewYork,100
+    Pittsburgh,Washington,100
+    NewYork,Washington,100
+    NewYork,Boston,100
+    Portland,SanFrancisco,100
+    Portland,SaltLakeCity,100
+    SanFrancisco,SaltLakeCity,100
+    SanFrancisco,LosAngeles,100
+    LosAngeles,LasVegas,100
+    LosAngeles,Phoenix,100
+    SaltLakeCity,Denver,100
+    SaltLakeCity,LasVegas,100
+    Denver,SantaFe,100
+    Denver,Phoenix,100
+    Denver,Omaha,100
+    Denver,KansasCity,100
+    KansasCity,SaintLouis,100
+    KansasCity,OklahomaCity,100
+    SaintLouis,Nashville,100
+    Nashville,Raleigh,100
+    Nashville,Atlanta,100
+    Washington,Raleigh,100
+    Raleigh,Atlanta,100
+    Raleigh,Charleston,100
+    Atlanta,Miami,100
+    Atlanta,NewOrleans,100
+    Charleston,Miami,100
+    Miami,NewOrleans,100
+    NewOrleans,LittleRock,100
+    NewOrleans,Houston,100
+    Houston,Dallas,100
+    Dallas,LittleRock,100
+    Dallas,ElPaso,100
+    ElPaso,LosAngeles,100
+    ElPaso,SantaFe,100
+    Atlanta,Charleston,100
+    SantaFe,OklahomaCity,100
+    SantaFe,Phoenix,100
+    LittleRock,Nashville,100
+    LittleRock,OklahomaCity,100
+    LittleRock,SaintLouis,100
+    </string>
+    <string name="location2">Vancouver,80,78
+Calgary,180,67
+Winnipeg,360,75
+Montreal,696,66
+SaultSaintMarie,550,120
+Seattle,76,123
+Toronto,630,130
+Boston,750,110
+Portland,60,164
+Helena,260,170
+Duluth,440,166
+NewYork,700,165
+SaltLakeCity,200,270
+Denver,300,290
+Omaha,420,240
+Chicago,540,215
+Pittsburgh,640,200
+Washington,716,240
+SanFrancisco,50,315
+KansasCity,435,280
+SaintLouis,500,300
+Raleigh,700,285
+OklahomaCity,420,340
+LittleRock,490,360
+Nashville,580,330
+LasVegas,160,350
+SantaFe,300,360
+Atlanta,640,360
+Charleston,700,380
+LosAngeles,111,395
+Phoenix,220,390
+ElPaso,300,425
+Dallas,440,415
+Houston,470,450
+NewOrleans,550,440
+Miami,700,460
+    </string>
+
+    <string name="action_sign_in_short">Register</string>
+    <string name="email">Email</string>
+    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="send_password_reset_email">Send Password reset email</string>
+    <string name="remove_user">Remove user</string>
+    <string name="new_pass">New Password</string>
+    <string name="title_activity_profile">Firebase</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_link_to_register">Not a member? Get registered in Firebase now!</string>
+    <string name="btn_link_to_login">Already registered. Login Me!</string>
+    <string name="title_activity_reset_password">ResetPasswordActivity</string>
+    <string name="btn_forgot_password">Forgot your password?</string>
+    <string name="btn_reset_password">Reset Password</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+    <string name="hint_new_email">New Email</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="prompt_password">Password</string>
+    <string name="bike_accessories">Bike Accessories</string>
+    <string name="subscription_packages">Subscription Packages</string>
+    <string name="openSourceApiKey">5b3ce3597851110001cf6248630e009bedd346f1a6fa6a5d718e4f4e</string>
+</resources>

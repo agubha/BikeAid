@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Tire/Tube:",
+    "price": "300",
+    "img": "https://cdn3.iconfinder.com/data/icons/bold-f1/512/F1_14-512.png"
+  },
+  {
+    "id": 2,
+    "name": "Unable to Start",
+    "price": "300",
+    "img": "https://image.shutterstock.com/image-vector/illustration-vintage-custom-motorcycle-chopper-450w-677155834.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Run out of Petrol",
+    "price": "300",
+    "img": "https://cdn4.iconfinder.com/data/icons/petrol-pump/128/fuel_fuel_station_petrol_pump_station-512.png"
+  },
+  {
+    "id": 4,
+    "name": "Clutch Wire Problem",
+    "price": "300",
+    "img": "https://thumbs.dreamstime.com/z/wire-burning-fire-wiring-faulty-damaged-cable-overload-electrical-safety-concept-vector-illustration-flat-design-short-144377759.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Pen/Pencil:",
+    "price": "500",
+    "img": "https://thumbs.dreamstime.com/z/wire-burning-fire-wiring-faulty-damaged-cable-overload-electrical-safety-concept-vector-illustration-flat-design-short-144377759.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Tire/Tube:",
+    "price": "300",
+    "img": "stringuirl"
+  },
+  {
+    "id": 7,
+    "name": "Tire/Tube:",
+    "price": "300",
+    "img": "stringuirl"
+  },
+  {
+    "id": 8,
+    "name": "Tire/Tube:",
+    "price": "300",
+    "img": "stringuirl"
+  }
+]

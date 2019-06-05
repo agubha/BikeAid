@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "461617710665",
+    "firebase_url": "https://bikeaid.firebaseio.com",
+    "project_id": "bikeaid",
+    "storage_bucket": "bikeaid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461617710665:android:369a1ad93432d2cd",
+        "android_client_info": {
+          "package_name": "com.example.bikeaid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461617710665-4cnh603v3m6iejptftijng5rf1mii9cm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bikeaid",
+            "certificate_hash": "0eb2e18d98afe8db17c0c0f98d9d22e1058e2765"
+          }
+        },
+        {
+          "client_id": "461617710665-gfid2tjeubrj8tmqj425pbri6t17mpsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWcQQ8aNW3SUj1jZIxbtW22UCS3ia84NE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461617710665-gfid2tjeubrj8tmqj425pbri6t17mpsb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
