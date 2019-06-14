@@ -2,10 +2,10 @@ package com.example.bikeaid;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +44,9 @@ public class EmergencyProblemListAdapter extends RecyclerView.Adapter<EmergencyP
             public void onClick(View v) {
                 Intent intent = new Intent(context, MapsActivity.class);
                 intent.putExtra("id", problemModels.get(i).getId());
+                intent.putExtra("img", problemModels.get(i).getImg());
+                intent.putExtra("price", problemModels.get(i).getPrice());
+                intent.putExtra("name", problemModels.get(i).getName());
                 context.startActivity(intent);
                 Toast.makeText(context, "Selected Problem:" + problemModels.get(i).getName(), Toast.LENGTH_SHORT).show();
             }
@@ -52,14 +55,12 @@ public class EmergencyProblemListAdapter extends RecyclerView.Adapter<EmergencyP
 
     @Override
     public int getItemCount() {
-        Log.d("SIZE", "" + problemModels.size());
         return problemModels.size();
     }
 
     public void setList(List<ProblemModel> problemModels) {
         this.problemModels = problemModels;
         notifyDataSetChanged();
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

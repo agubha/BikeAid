@@ -1,6 +1,11 @@
 package com.example.bikeaid.Model;
 
-public class ProblemModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class ProblemModel implements Serializable {
     private String name;
     private int id;
     private int price;
@@ -37,4 +42,6 @@ public class ProblemModel {
     public void setImg(String img) {
         this.img = img;
     }
+
+
 }

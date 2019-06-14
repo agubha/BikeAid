@@ -1,0 +1,88 @@
+{
+  "location": [
+    {
+      "name": "baneshwor",
+      "lat": "27.689842",
+      "lon": "85.34183"
+    },
+    {
+      "name": "shantinagar",
+      "lat": "27.686708",
+      "lon": "85.34327"
+    },
+    {
+      "name": "sankhamul",
+      "lat": "27.683495",
+      "lon": "85.33332"
+    },
+    {
+      "name": "minbhawan",
+      "lat": "27.687384",
+      "lon": "85.33829"
+    },
+    {
+      "name": "purano baneshwor",
+      "lat": "27.701473",
+      "lon": "85.33998"
+    },
+    {
+      "name": "sinamangal",
+      "lat": "27.695349",
+      "lon": "85.35431"
+    },
+    {
+      "name": "airport",
+      "lat": "27.701574",
+      "lon": "85.35306"
+    },
+    {
+      "name": "gaushala",
+      "lat": "27.708286",
+      "lon": "85.343636"
+    },
+    {
+      "name": "maitidevi",
+      "lat": "27.70393",
+      "lon": "85.33527"
+    },
+    {
+      "name": "gyaneswor",
+      "lat": "27.709608",
+      "lon": "85.33333"
+    },
+    {
+      "name": "naxal",
+      "lat": "27.715313",
+      "lon": "85.32778"
+    },
+    {
+      "name": "durbar marg",
+      "lat": "27.711302",
+      "lon": "85.31560"
+    },
+    {
+      "name": "putalisadak",
+      "lat": "27.703463",
+      "lon": "85.32191"
+    },
+    {
+      "name": "babar mahal",
+      "lat": "27.694777",
+      "lon": "85.32149"
+    },
+    {
+      "name": "anamnagar",
+      "lat": "27.699957",
+      "lon": "85.332466"
+    },
+    {
+      "name": "koteshwor",
+      "lat": "27.67631",
+      "lon": "85.34835"
+    }
+  ]
+}
+
+
+
+

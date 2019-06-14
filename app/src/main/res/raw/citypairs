@@ -1,0 +1,129 @@
+{
+   "pairs": [
+      {
+         "a": "durbar marg",
+         "b": "naxal",
+         "dis": 2415
+      },
+      {
+         "a": "durbar marg",
+         "b": "putalisadak",
+         "dis": 1835
+      },
+      {
+         "a": "naxal",
+         "b": "gyaneswor",
+         "dis": 1213
+      },
+      {
+         "a": "gyaneswor",
+         "b": "anamnagar",
+         "dis": 1694
+      },
+      {
+         "a": "gyaneswor",
+         "b": "maitidevi",
+         "dis": 1092
+      },
+      {
+         "a": "gyaneswor",
+         "b": "gaushala",
+         "dis": 1388
+      },
+      {
+         "a": "putalisadak",
+         "b": "babar mahal",
+         "dis": 1061
+      },
+      {
+         "a": "babar mahal",
+         "b": "sankhamul",
+         "dis": 2415
+      },
+      {
+         "a": "babar mahal",
+         "b": "anamnagar",
+         "dis": 1748
+      },
+      {
+         "a": "anamnagar",
+         "b": "purano baneshwor",
+         "dis": 969
+      },
+      {
+         "a": "anamnagar",
+         "b": "sankhamul",
+         "dis": 2922
+      },
+      {
+         "a": "maitidevi",
+         "b": "purano baneshwor",
+         "dis": 695
+      },
+      {
+         "a": "gaushala",
+         "b": "purano baneshwor",
+         "dis": 1595
+      },
+      {
+         "a": "purano baneshwor",
+         "b": "sankhamul",
+         "dis": 2248
+      },
+      {
+         "a": "purano baneshwor",
+         "b": "baneshwor",
+         "dis": 1932
+      },
+      {
+         "a": "purano baneshwor",
+         "b": "airport",
+         "dis": 2210
+      },
+      {
+         "a": "gaushala",
+         "b": "airport",
+         "dis": 1474
+      },
+      {
+         "a": "sankhamul",
+         "b": "minbhawan",
+         "dis": 995
+      },
+      {
+         "a": "minbhawan",
+         "b": "baneshwor",
+         "dis": 1592
+      },
+      {
+         "a": "minbhawan",
+         "b": "shantinagar",
+         "dis": 537
+      },
+      {
+         "a": "baneshwor",
+         "b": "shantinagar",
+         "dis": 648
+      },
+      {
+         "a": "baneshwor",
+         "b": "sinamangal",
+         "dis": 2522
+      },
+      {
+         "a": "shantinagar",
+         "b": "koteshwor",
+         "dis": 2025
+      },
+      {
+         "a": "koteshwor",
+         "b": "sinamangal",
+         "dis": 2791
+      },
+      {
+         "a": "sinamangal",
+         "b": "airport",
+         "dis": 880
+      }
+   ]
+}

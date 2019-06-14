@@ -1,7 +1,9 @@
 package com.example.bikeaid;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,17 +11,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.bikeaid.Model.FirebaseUserModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView slider_image, requestServiceImage, emergencyBreakDownImage, subscriptionPackageImage, bikeAccessoriesImage;
     private ConstraintLayout constraintLayout;
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabaseRef;
+    private ImageView imageView;
+    private StorageReference mStorageRef;
+    private Uri uri = null;
+    private TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +54,41 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        //loadSideNavigationUserImageIfLoggedIn
+        auth = FirebaseAuth.getInstance();
+        Log.d("LKOAD IMAGE ", "NOT RUNNING");
+        View header = navigationView.getHeaderView(0);
+        imageView = header.findViewById(R.id.imageViewsss);
+        username = header.findViewById(R.id.userName);
+        if (auth.getUid() != null) {
+            Log.d("URI", "" + uri);
+            //if Logged In Load User Image
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("UserDetails").child(auth.getUid());
+            mDatabaseRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    FirebaseUserModel firebaseUserModel = dataSnapshot.getValue(FirebaseUserModel.class);
+                    if (firebaseUserModel != null) {
+                        Picasso.get().load(firebaseUserModel.getUriUserImage()).into(imageView);
+                        username.setText(firebaseUserModel.getUsername());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
         //Slider Image
         slider_image = findViewById(R.id.slider_image);
         requestServiceImage = findViewById(R.id.reqSerimg);
         emergencyBreakDownImage = findViewById(R.id.emebredwnImg);
         subscriptionPackageImage = findViewById(R.id.subpakimg);
         bikeAccessoriesImage = findViewById(R.id.bikAccImg);
-        //static image
-        //title iamge
-//        Picasso.get().load("https://the-drive-2.imgix.net/https%3A%2F%2Fs3.amazonaws.com%2Fthe-drive-staging%2Fmessage-editor%252F1520634822592-ninja400.jpg?auto=compress%2Cformat&ixlib=js-1.2.1&s=ca83f6d3d4f8aeebf93607d799658023")
-//                .into(slider_image);
+
         //Emergency BreakDown
         constraintLayout = findViewById(R.id.emergency_break_down_layout);
         loadImages();
@@ -56,6 +100,7 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
+
 
     private void loadImages() {
         Picasso.get().load("https://the-drive-2.imgix.net/https%3A%2F%2Fs3.amazonaws.com%2Fthe-drive-staging%2Fmessage-editor%252F1520634822592-ninja400.jpg?auto=compress%2Cformat&ixlib=js-1.2.1&s=ca83f6d3d4f8aeebf93607d799658023")
@@ -73,12 +118,6 @@ public class MainActivity extends AppCompatActivity
 
     private void gotoEmergencyBreakdown() {
         Intent intent = new Intent(this, EmergencyBreakDown.class);
-        startActivity(intent);
-    }
-
-
-    private void gotoMaps() {
-        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 
@@ -111,6 +150,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.action_user) {
+            Intent intent = new Intent(MainActivity.this, UserActivity.class);
+            startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -135,7 +178,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

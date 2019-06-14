@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">BikeAid@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -153,4 +153,7 @@ Miami,700,460
     <string name="bike_accessories">Bike Accessories</string>
     <string name="subscription_packages">Subscription Packages</string>
     <string name="openSourceApiKey">5b3ce3597851110001cf6248630e009bedd346f1a6fa6a5d718e4f4e</string>
+    <string name="login">Login</string>
+    <string name="emergency">Emergency BreakDown</string>
+    <string name="user">User</string>
 </resources>

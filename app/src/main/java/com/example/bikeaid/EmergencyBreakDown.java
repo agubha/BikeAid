@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class EmergencyBreakDown extends AppCompatActivity {
@@ -61,7 +62,7 @@ public class EmergencyBreakDown extends AppCompatActivity {
 
             is.close();
 
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
 
 
         } catch (IOException ex) {
