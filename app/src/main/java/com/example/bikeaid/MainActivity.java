@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //loadSideNavigationUserImageIfLoggedIn
         auth = FirebaseAuth.getInstance();
-        Log.d("LKOAD IMAGE ", "NOT RUNNING");
         View header = navigationView.getHeaderView(0);
         imageView = header.findViewById(R.id.imageViewsss);
         username = header.findViewById(R.id.userName);
