@@ -88,18 +88,14 @@
       "title": "Kavrely MoterBike Workshop",
       "Services": [
         "Tyre",
-        "Tube",
         "Tubeless",
-        "Tubeless liquid",
-        "Wheel Bearing",
+        "liquid",
         "Cone Bearing"
       ],
       "tag": [
         "tyre",
-        "tube",
         "tubeless",
-        "tubeless liquid",
-        "wheel bear",
+        "liquid",
         "cone bear"
       ],
       "lat": "27.701473",
@@ -110,17 +106,13 @@
       "image": "https://media.zigcdn.com/media/model/2017/Feb/200-ktm-duke-left_600x300.jpg",
       "title": "PashupatiNath Workshop",
       "Services": [
-        "Seat",
         "Seat Cover",
         "Battery Replacement",
-        "Battery Charge",
         "Self Start Problem"
       ],
       "tag": [
-        "seat",
         "seat cover",
         "batteri replac",
-        "batteri charg",
         "self start problem"
       ],
       "lat": "27.695349",
@@ -133,18 +125,16 @@
       "Services": [
         "Regular Servicing",
         "Mobil Change",
-        "Mobil filter change",
+        "filter",
         "Engine Maintenance",
-        "Half Engine",
-        "Full engine"
+        "Half Full Engine",
       ],
       "tag": [
         "regular servic",
         "mobil chang",
-        "mobil filter chang",
+        "filter",
         "engine mainten",
-        "half engine",
-        "full engin"
+        "half full engine"
       ],
       "lat": "27.701574",
       "lon": "85.35306"
@@ -155,21 +145,17 @@
       "title": "Sabaiko Workshop",
       "Services": [
         "Battery",
-        "Battery Charge",
+        "Charge",
         "Self Start Problem",
         "Blub",
-        "Head light",
-        "Side light",
-        "Tail Light"
+        "Head Side Tail light"
       ],
       "tag": [
         "batteri",
-        "batteri charg",
+        "charg",
         "self start problem",
         "blub",
-        "head light",
-        "side light",
-        "tail light"
+        "head light tail light"
       ],
       "lat": "27.708286",
       "lon": "85.343636"
@@ -179,20 +165,16 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAI6PxgUEDv6hsJl-rGX2SQI9scpCyXUWjpANwg_2cCumJWEG",
       "title": "Shree Krishna Workshop",
       "Services": [
-        "Clutch wire",
-        "Accelator Wire",
-        "Wiring Problem",
+        "Clutch Accelator wire",
         "Full Wiring",
         "Battery",
-        "Distilled Water for Battery"
+        "Distilled Water"
       ],
       "tag": [
-        "clutch wire",
-        "accelat wire",
-        "wire problem",
+        "clutch accelat wire",
         "full wire",
         "batteri",
-        "distil water for batteri"
+        "distil water"
       ],
       "lat": "27.70393",
       "lon": "85.33527"
@@ -202,18 +184,14 @@
       "image": "https://bullitmotorcycles.com/htmimg/band01.jpg",
       "title": "Bijaya Workshop",
       "Services": [
-        "Cone Bearing Replacement",
-        "Wheel Bearing",
+        "Cone Wheel Bearing Replacement",
         "Shock Repair",
-        "Shock Replacement",
         "Honda",
         "Digital Meter"
       ],
       "tag": [
-        "cone bear replac",
-        "cone bear replac",
+        "cone wheel bear replac",
         "shock repair",
-        "shock replac",
         "honda",
         "digit meter"
       ],
@@ -247,20 +225,15 @@
       "name": "Hamro Workshop",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM0UldWf6SWuy-xjdbBQIK2ZzLjYXUXBT43BXAXYHYwtuSzfwp",
       "title": "ABC WORKSHOP",
-      "Services": [
-        "Pick and Drop Service",
+      "Services": [ "Pick and Drop Service",
         "Number Plate",
-        "Air Filter",
-        "Mobil Filter",
-        "Seat",
+        "Air Mobil Filter",
         "Seat Cover"
       ],
       "tag": [
         "pick and drop servic",
         "number plate",
-        "air filter",
-        "mobil filter",
-        "seat",
+        "air mobil filter",
         "seat cover"
       ],
       "lat": "27.711302",
@@ -272,16 +245,14 @@
       "title": "Dolakha Moterbike Service Center",
       "Services": [
         "Shock Replacement",
-        "Number Plate",
+        "Number",
         "Chain Spoket",
-        "Chain Maintenance",
         "Clutch Plate"
       ],
       "tag": [
         "shock replac",
-        "number plate",
+        "number",
         "chain spoket",
-        "chain mainten",
         "clutch plate"
       ],
       "lat": "27.703463",
@@ -292,22 +263,18 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVGOaVSMR8zxSJLnovX2GuvgUVsldU98gw1Pb5XSVSYws1b3wR",
       "title": "Maitighar Moterbike Servicing",
       "Services": [
-        "Head light",
-        "Side Light",
-        "Tail light",
+        "Head Side Tail light",
         "Mirror Replacement",
         "Servicing",
-        "Clutch Wire",
+        "Clutch",
         "Accelator wire",
         "Unable to start"
       ],
       "tag": [
-        "head light",
-        "side light",
-        "tail light",
+        "head light tail light",
         "mirror replac",
         "servic",
-        "clutch wire",
+        "clutch",
         "accelat wire",
         "unabl to start"
       ],
@@ -319,15 +286,13 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVGOaVSMR8zxSJLnovX2GuvgUVsldU98gw1Pb5XSVSYws1b3wR",
       "title": "A One Moterbike Workshop",
       "Services": [
-        "Self Start problem",
-        "Engine Problem",
+        "Self Start",
         "Engine Maintenance",
         "Clutch Plate",
         "Regular Servicing"
       ],
       "tag": [
-        "self start problem",
-        "engine problem",
+        "self start",
         "engine mainten",
         "clutch plate",
         "regular servic"
@@ -339,6 +304,29 @@
       "name": "koteshwor",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAI6PxgUEDv6hsJl-rGX2SQI9scpCyXUWjpANwg_2cCumJWEG",
       "title": "Koteshwor Workshop",
+      "Services": [
+        "Cone Bearing",
+        "Number Plate",
+        "Wheel",
+        "Tyre",
+        "Tubeless",
+        "Seat Cover"
+      ],
+      "tag": [
+        "cone bear",
+        "number plate",
+        "wheel bear",
+        "tyre",
+        "tubeless",
+        "seat cover"
+      ],
+      "lat": "27.67631",
+      "lon": "85.34835"
+    },
+    {
+      "name": "durbar marg",
+      "image": "http://www.studiomotor.com/wp-content/uploads/2016/04/KTM-DUKE-8-01.jpeg",
+      "title": "ABC WORKSHOP",
       "Services": [
         "Cone Bearing",
         "Number Plate",
@@ -355,8 +343,8 @@
         "tubeless",
         "seat cover"
       ],
-      "lat": "27.67631",
-      "lon": "85.34835"
+      "lat": "27.711302",
+      "lon": "85.31560"
     }
   ]
 }

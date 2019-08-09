@@ -44,7 +44,6 @@ public class RequestServicing extends AppCompatActivity {
                         }
                         serviceListAdapter.setProduct(productModelArrayList);
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Util.toast(databaseError.getDetails(), RequestServicing.this);

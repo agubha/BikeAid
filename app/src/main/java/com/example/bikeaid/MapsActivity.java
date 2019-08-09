@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -80,11 +81,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int id, price;
     private ConstraintLayout constraintLayout;
     private Polyline line;
+    Locations locations;
+    private Dijkstra dijkstra;
+    private Marker[] marker;
+    private List<Locations> locationsList;
+    private OverAllListOfRouting overAllListOfRouting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         cities = loadcitiesJson();
         pairLists = loadpairjson();
+        overAllListOfRouting = loadPathing();
 //        createLists();
 
         super.onCreate(savedInstanceState);
@@ -107,6 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+
     private boolean getIntents() {
         if (getIntent().hasExtra("id")) {
             id = getIntent().getIntExtra("id", 0);
@@ -119,22 +127,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.setOnMarkerClickListener(this);
         loadtracker();
     }
@@ -144,11 +139,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
@@ -159,7 +149,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             load(mobileLocation);
     }
 
-    //UPDATE Map pointer to current location
     @Override
     public void onLocationChanged(Location location) {
         load(location);
@@ -176,92 +165,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("My Location"));
         //OFLINE DATA LOADING
         List<LatLng> latLngList = new ArrayList<>();
-        List<Locations> locationsList = createList();
+        locationsList = createList();
 
-        Marker[] marker = new Marker[locationsList.size()];
+        marker = new Marker[locationsList.size()];
         for (int i = 0; i < locationsList.size(); i++) {
             double lat = Double.parseDouble(locationsList.get(i).getLat());
             double lon = Double.parseDouble(locationsList.get(i).getLon());
-            LatLng hospital = new LatLng(lat, lon);
-            marker[i] = createMarker(lat, lon, locationsList.get(i).getName(), "", R.drawable.ic_directions_bike_black_24dp);
-            markerlist.add(mMap.addMarker(new MarkerOptions().position(hospital).title(locationsList.get(i).getName())));
-            /*Request parameters exceed the server configuration limits. The approximated route distance must not be greater than 6000000.0 meters.*/
-            latLngList.add(hospital);
-            //29.699206,85.339565
-            //STATIC FOR COLLEGE
+            LatLng currentLotLong = new LatLng(lat, lon);
+            marker[i] = createMarker(lat, lon, locationsList.get(i).getName(), locationsList.get(i).getName());
 
-//            start = 85.339565 + "," + 29.699206;//LONGITUDE, LATITUDe
+            markerlist.add(mMap.addMarker(new MarkerOptions().position(currentLotLong).title(locationsList.get(i).getName())));
+            /*Request parameters exceed the server configuration limits. The approximated route distance must not be greater than 6000000.0 meters.*/
+            latLngList.add(currentLotLong);
             start = location.getLongitude() + "," + location.getLatitude();
             end = lon + "," + lat;
         }
 
-
         //online DATA LOADING
-//        new loaddataevery5sec(start, end).execute();
         locationManager.removeUpdates(this);
     }
 
-//    private void createLists() {
-//        Gson gson = new Gson();
-//        Type type = new TypeToken<OverAllListOfRouting>() {
-//        }.getType();
-//        OverAllListOfRouting problemModels = gson.fromJson(loadjsonfromrawrouting(), type);
-//
-////        emergencyProblemListAdapter.setList(problemModels);
-//    }
-
-//    private String loadjsonfromrawrouting() {
-//        String json = null;
-//        try {
-//            InputStream is = getResources().openRawResource(R.raw.workshoppathing);
-//            int size = is.available();
-//            byte[] buffer = new byte[size];
-//            is.read(buffer);
-//            is.close();
-//            json = new String(buffer, StandardCharsets.UTF_8);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            return null;
-//        }
-//        Log.d("OUTPUT", "1111" + json);
-//        return json;
-//    }
-
-//    private class loaddataevery5sec extends AsyncTask<Void, Void, Void> {
-//        private String start2;
-//        private String[] end2;
-//
-//        public loaddataevery5sec(String start, String[] end) {
-//            start2 = start;
-//            end2 = end;
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            int i = 0;
-//            do {
-////                loadPath(start2, end2[i]);
-//                i++;
-//                try {
-//                    Thread.sleep(5000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            } while (i < end2.length);
-//            return null;
-//        }
-//    }
-
-    protected Marker createMarker(double latitude, double longitude, String title, String snippet, int iconResID) {
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 9f));
-
-        Marker myMarker = mMap.addMarker(new MarkerOptions()
+    protected Marker createMarker(double latitude, double longitude, String title, String snippet) {
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 9f));
+        return mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(latitude, longitude))
                 .anchor(0.5f, 0.5f)
                 .title(title)
-                .snippet(snippet)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-        return myMarker;
+                .snippet(snippet));
 
     }
 
@@ -287,7 +217,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             ex.printStackTrace();
             return null;
         }
-        Log.d("OUTPUT", "" + json);
         return json;
 
     }
@@ -303,8 +232,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     private void loadPath(String v, String v1) {
-        Log.d("V1", "" + v);
-        Log.d("v2", "" + v1);
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -368,31 +295,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private Dijkstra dijkstra;
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        Locations selectedLocation = null;
+        for (Locations i : locationsList) {
+            if (i.getName().equals(marker.getSnippet())) {
+                selectedLocation = i;
+            }
+        }
+        if (selectedLocation != null)
+            showBottomDialog(selectedLocation, marker);
+
+        return true;
+    }
+
+    private void showBottomDialog(Locations selectedLocation, Marker marker) {
+        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(MapsActivity.this);
+        View parentView = getLayoutInflater().inflate(R.layout.bottom_dialog, null);
+        bottomSheerDialog.setContentView(parentView);
+        bottomSheerDialog.show();
+        ImageView workshopImage = bottomSheerDialog.findViewById(R.id.displayImage);
+        TextView titleView = bottomSheerDialog.findViewById(R.id.displayTitle);
+        TextView description = bottomSheerDialog.findViewById(R.id.description);
+        TextView getDirection = bottomSheerDialog.findViewById(R.id.getDirection);
+        Picasso.get().load(selectedLocation.getImage()).into(workshopImage);
+        titleView.setText(selectedLocation.getTitle());
+        description.setText(selectedLocation.getName());
+        getDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                traceMap(marker);
+                bottomSheerDialog.dismiss();
+            }
+        });
+
+
+    }
+
+    private void traceMap(Marker marker) {
         if (line != null)
             line.remove();
         LatLng selected = marker.getPosition();
-        Toast.makeText(this, "" + marker.getTitle(), Toast.LENGTH_SHORT).show();
         end = selected.longitude + "," + selected.latitude;
 //        loadPath(start, end);
         Dijkstra dijkstra = new Dijkstra();
         loadNearestMarker();
-
         for (int i = 0; i < cities.getLocation().size(); i++) {
             float lon = Float.parseFloat(cities.getLocation().get(i).getLon());
             float lat = Float.parseFloat(cities.getLocation().get(i).getLat());
             Vertex vertex = new Vertex(cities.getLocation().get(i).getName(), lat, lon);
             dijkstra.addVertex(vertex);
         }
-
-
         for (int i = 0; i < pairLists.getPairs().size(); i++) {
             dijkstra.addUndirectedEdge(pairLists.getPairs().get(i).getA(), pairLists.getPairs().get(i).getB(), pairLists.getPairs().get(i).getDis());
         }
-
         List<Edge> weightedPath = dijkstra.getDijkstraPath(mClosestMarker.getTitle(), marker.getTitle());
         i = 0;
         Runnable runnable = new Runnable() {
@@ -401,6 +358,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (i < weightedPath.size()) {
                     String start = weightedPath.get(i).source.y + "," + weightedPath.get(i).source.x;
                     String end = weightedPath.get(i).target.y + "," + weightedPath.get(i).target.x;
+                    Log.d("STARTING:", "" + start);
+                    Log.d("Ending:", "" + end);
+
+
                     loadPath(start, end);
                     i++;
                     Toast.makeText(MapsActivity.this, "Loaded", Toast.LENGTH_SHORT).show();
@@ -411,19 +372,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
         mHandler.post(runnable);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (i != weightedPath.size()) {
-//                    String start = weightedPath.get(i).source.y + "," + weightedPath.get(i).source.x;
-//                    String end = weightedPath.get(i).target.y + "," + weightedPath.get(i).target.x;
-//                    loadPath(start, end);
-//                    i++;
-//                }
-//            }
-//        });
-
-        return true;
     }
 
 
@@ -438,12 +386,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mindist = distance2;
                 pos = i;
             }
-
         }
         mClosestMarker = markerlist.get(pos);
         String v1 = cities.getLocation().get(pos).getLon() + "," + cities.getLocation().get(pos).getLat();
         String v2 = currentmarker.getPosition().longitude + "," + currentmarker.getPosition().latitude;
-//        String v2 = "85.346500,27.685321";
         loadPath(v2, v1);
     }
 
@@ -455,7 +401,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double dist = earthRadius * c;
         int meterConversion = 1609;
-        return new Double(dist * meterConversion).floatValue();    // this will return distance
+        return Double.valueOf(dist * meterConversion).floatValue();    // this will return distance
     }
 
     private Cities loadcitiesJson() {
@@ -464,6 +410,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }.getType();
         return gson.fromJson(loadCityJson(), type);
     }
+
+    private OverAllListOfRouting loadPathing() {
+        Gson gson = new Gson();
+        Type type = new TypeToken<OverAllListOfRouting>() {
+        }.getType();
+        return gson.fromJson(loadRoutingJson(), type);
+    }
+
+    private String loadRoutingJson() {
+        String json;
+        try {
+            InputStream is = getResources().openRawResource(R.raw.workshoppathing);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json; }
 
     private String loadCityJson() {
         String json;

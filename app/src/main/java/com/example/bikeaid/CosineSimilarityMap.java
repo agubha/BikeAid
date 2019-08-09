@@ -66,6 +66,7 @@ public class CosineSimilarityMap extends FragmentActivity implements OnMapReadyC
     Locations locations;
     private Geometry geometry = null;
     private Polyline line;
+    private ImageView refresh;
 
     private void getIntents() {
         if (getIntent().hasExtra("id")) {
@@ -90,14 +91,19 @@ public class CosineSimilarityMap extends FragmentActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(CosineSimilarityMap.this);
+        refresh = findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadtracker();
+            }
+        });
     }
 
     private void addMarker() {
         double lat = Double.parseDouble(locations.getLat());
         double lon = Double.parseDouble(locations.getLon());
         LatLng latLng2 = new LatLng(lat, lon);
-
-
         mMap.addMarker(new MarkerOptions()
                 .position(latLng2)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
@@ -106,7 +112,6 @@ public class CosineSimilarityMap extends FragmentActivity implements OnMapReadyC
             @Override
             public boolean onMarkerClick(Marker marker) {
                 if (marker.getSnippet().equals(locations.getName())) {
-
                     showDetails();
                 }
                 return false;
@@ -228,15 +233,12 @@ public class CosineSimilarityMap extends FragmentActivity implements OnMapReadyC
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
 //        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
 //        locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
-//
-        try {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
-        } catch (Exception e) {
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            load(location);
-        }
+        Location mobileLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (mobileLocation != null)
+            load(mobileLocation);
     }
 
     private void loadPath(String v, String v1) {
@@ -306,6 +308,7 @@ public class CosineSimilarityMap extends FragmentActivity implements OnMapReadyC
         mMap.animateCamera(cameraUpdate);
         currentmarker = mMap.addMarker(new MarkerOptions()
                 .position(latLng)
+                .snippet("My_Location")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
                 .title("My Location"));
         locationManager.removeUpdates(this);

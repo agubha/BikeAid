@@ -34,7 +34,7 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView slider_image, requestServiceImage, emergencyBreakDownImage, subscriptionPackageImage, bikeAccessoriesImage;
-    private ConstraintLayout constraintLayout, constraintLayout2;
+    private ConstraintLayout constraintLayout, constraintLayout2, contraintSubscription;
     private FirebaseAuth auth;
     private DatabaseReference mDatabaseRef;
     private ImageView imageView;
@@ -119,6 +119,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        contraintSubscription = findViewById(R.id.constraintLayout2);
+        contraintSubscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SubscriptionPackage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void gotoRequestServicing() {
@@ -170,7 +178,6 @@ public class MainActivity extends AppCompatActivity
         iconYoutube = findViewById(R.id.iconYoutube);
         iconSetting = findViewById(R.id.iconSetting);
     }
-
 
     private void loadImages() {
         Picasso.get().load("https://the-drive-2.imgix.net/https%3A%2F%2Fs3.amazonaws.com%2Fthe-drive-staging%2Fmessage-editor%252F1520634822592-ninja400.jpg?auto=compress%2Cformat&ixlib=js-1.2.1&s=ca83f6d3d4f8aeebf93607d799658023")
