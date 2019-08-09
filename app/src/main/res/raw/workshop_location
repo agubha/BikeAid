@@ -2,87 +2,361 @@
   "location": [
     {
       "name": "baneshwor",
+      "image": "https://www.merosecondhand.com/oc-content/uploads/1/377.jpg",
+      "title": "Baneshwor Workshop",
+      "Services": [
+        "Engine Maintenance",
+        "Clutch Wire",
+        "Carborator Maintenance",
+        "Bajaj"
+      ],
+      "tag": [
+        "engine mainten",
+        "servicing",
+        "carbor mainten",
+        "bajaj"
+      ],
       "lat": "27.689842",
       "lon": "85.34183"
     },
     {
       "name": "shantinagar",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxlk6vlkYWerAaU0d3XAa64as9TqDylEXEOZzkAmo13gUkoGAI",
+      "title": "Jai Mata Workshop",
+      "Services": [
+        "Break",
+        "Number Plate",
+        "Disk Break",
+        "Break Shoe",
+        "Regular Servicing",
+        "Yamaha"
+      ],
+      "tag": [
+        "break",
+        "number plate",
+        "disk break",
+        "break shoe",
+        "regular servic",
+        "yamaha"
+      ],
       "lat": "27.686708",
       "lon": "85.34327"
     },
     {
       "name": "sankhamul",
+      "image": "https://c8.alamy.com/comp/FT6KA6/nepal-kathmandu-motorcycle-repair-shop-FT6KA6.jpg",
+      "title": "Nasa Workshop",
+      "Services": [
+        "Cluth Plate",
+        "Mobile Change",
+        "Air Filter",
+        "Chain Spoket"
+      ],
+      "tag": [
+        "cluth plate",
+        "mobil chang",
+        "air filter",
+        "chain spoket"
+      ],
       "lat": "27.683495",
       "lon": "85.33332"
     },
     {
       "name": "minbhawan",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM0UldWf6SWuy-xjdbBQIK2ZzLjYXUXBT43BXAXYHYwtuSzfwp",
+      "title": "Infilder Workshop",
+      "Services": [
+        "Bullet",
+        "Cylencer",
+        "Dent",
+        "Chain Spoket",
+        "Servicing"
+      ],
+      "tag": [
+        "bullet",
+        "cylenc",
+        "dent",
+        "chain spoket",
+        "servic"
+      ],
       "lat": "27.687384",
       "lon": "85.33829"
     },
     {
       "name": "purano baneshwor",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4tMuym_nuibr-yUIqhsawFx6TXSnMBhDvAM44AYBXHhkVtsO4",
+      "title": "Kavrely MoterBike Workshop",
+      "Services": [
+        "Tyre",
+        "Tube",
+        "Tubeless",
+        "Tubeless liquid",
+        "Wheel Bearing",
+        "Cone Bearing"
+      ],
+      "tag": [
+        "tyre",
+        "tube",
+        "tubeless",
+        "tubeless liquid",
+        "wheel bear",
+        "cone bear"
+      ],
       "lat": "27.701473",
       "lon": "85.33998"
     },
     {
       "name": "sinamangal",
+      "image": "https://media.zigcdn.com/media/model/2017/Feb/200-ktm-duke-left_600x300.jpg",
+      "title": "PashupatiNath Workshop",
+      "Services": [
+        "Seat",
+        "Seat Cover",
+        "Battery Replacement",
+        "Battery Charge",
+        "Self Start Problem"
+      ],
+      "tag": [
+        "seat",
+        "seat cover",
+        "batteri replac",
+        "batteri charg",
+        "self start problem"
+      ],
       "lat": "27.695349",
       "lon": "85.35431"
     },
     {
       "name": "airport",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVGOaVSMR8zxSJLnovX2GuvgUVsldU98gw1Pb5XSVSYws1b3wR",
+      "title": "Hashi Khushi Auto Parts",
+      "Services": [
+        "Regular Servicing",
+        "Mobil Change",
+        "Mobil filter change",
+        "Engine Maintenance",
+        "Half Engine",
+        "Full engine"
+      ],
+      "tag": [
+        "regular servic",
+        "mobil chang",
+        "mobil filter chang",
+        "engine mainten",
+        "half engine",
+        "full engin"
+      ],
       "lat": "27.701574",
       "lon": "85.35306"
     },
     {
       "name": "gaushala",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVGOaVSMR8zxSJLnovX2GuvgUVsldU98gw1Pb5XSVSYws1b3wR",
+      "title": "Sabaiko Workshop",
+      "Services": [
+        "Battery",
+        "Battery Charge",
+        "Self Start Problem",
+        "Blub",
+        "Head light",
+        "Side light",
+        "Tail Light"
+      ],
+      "tag": [
+        "batteri",
+        "batteri charg",
+        "self start problem",
+        "blub",
+        "head light",
+        "side light",
+        "tail light"
+      ],
       "lat": "27.708286",
       "lon": "85.343636"
     },
     {
       "name": "maitidevi",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAI6PxgUEDv6hsJl-rGX2SQI9scpCyXUWjpANwg_2cCumJWEG",
+      "title": "Shree Krishna Workshop",
+      "Services": [
+        "Clutch wire",
+        "Accelator Wire",
+        "Wiring Problem",
+        "Full Wiring",
+        "Battery",
+        "Distilled Water for Battery"
+      ],
+      "tag": [
+        "clutch wire",
+        "accelat wire",
+        "wire problem",
+        "full wire",
+        "batteri",
+        "distil water for batteri"
+      ],
       "lat": "27.70393",
       "lon": "85.33527"
     },
     {
       "name": "gyaneswor",
+      "image": "https://bullitmotorcycles.com/htmimg/band01.jpg",
+      "title": "Bijaya Workshop",
+      "Services": [
+        "Cone Bearing Replacement",
+        "Wheel Bearing",
+        "Shock Repair",
+        "Shock Replacement",
+        "Honda",
+        "Digital Meter"
+      ],
+      "tag": [
+        "cone bear replac",
+        "cone bear replac",
+        "shock repair",
+        "shock replac",
+        "honda",
+        "digit meter"
+      ],
       "lat": "27.709608",
       "lon": "85.33333"
     },
     {
       "name": "naxal",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxlk6vlkYWerAaU0d3XAa64as9TqDylEXEOZzkAmo13gUkoGAI",
+      "title": "Tapaiko Workshop",
+      "Services": [
+        "Magnetic Coil Problem",
+        "Number Plate",
+        "Disc Break",
+        "Disk Wheel",
+        "Rim Replacement",
+        "Speedometer"
+      ],
+      "tag": [
+        "magnet coil problem",
+        "number plate",
+        "disc break",
+        "disk wheel",
+        "rim replac",
+        "speedomet"
+      ],
       "lat": "27.715313",
       "lon": "85.32778"
     },
     {
-      "name": "durbar marg",
+      "name": "Hamro Workshop",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM0UldWf6SWuy-xjdbBQIK2ZzLjYXUXBT43BXAXYHYwtuSzfwp",
+      "title": "ABC WORKSHOP",
+      "Services": [
+        "Pick and Drop Service",
+        "Number Plate",
+        "Air Filter",
+        "Mobil Filter",
+        "Seat",
+        "Seat Cover"
+      ],
+      "tag": [
+        "pick and drop servic",
+        "number plate",
+        "air filter",
+        "mobil filter",
+        "seat",
+        "seat cover"
+      ],
       "lat": "27.711302",
       "lon": "85.31560"
     },
     {
       "name": "putalisadak",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4tMuym_nuibr-yUIqhsawFx6TXSnMBhDvAM44AYBXHhkVtsO4",
+      "title": "Dolakha Moterbike Service Center",
+      "Services": [
+        "Shock Replacement",
+        "Number Plate",
+        "Chain Spoket",
+        "Chain Maintenance",
+        "Clutch Plate"
+      ],
+      "tag": [
+        "shock replac",
+        "number plate",
+        "chain spoket",
+        "chain mainten",
+        "clutch plate"
+      ],
       "lat": "27.703463",
       "lon": "85.32191"
     },
     {
       "name": "babar mahal",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVGOaVSMR8zxSJLnovX2GuvgUVsldU98gw1Pb5XSVSYws1b3wR",
+      "title": "Maitighar Moterbike Servicing",
+      "Services": [
+        "Head light",
+        "Side Light",
+        "Tail light",
+        "Mirror Replacement",
+        "Servicing",
+        "Clutch Wire",
+        "Accelator wire",
+        "Unable to start"
+      ],
+      "tag": [
+        "head light",
+        "side light",
+        "tail light",
+        "mirror replac",
+        "servic",
+        "clutch wire",
+        "accelat wire",
+        "unabl to start"
+      ],
       "lat": "27.694777",
       "lon": "85.32149"
     },
     {
       "name": "anamnagar",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVGOaVSMR8zxSJLnovX2GuvgUVsldU98gw1Pb5XSVSYws1b3wR",
+      "title": "A One Moterbike Workshop",
+      "Services": [
+        "Self Start problem",
+        "Engine Problem",
+        "Engine Maintenance",
+        "Clutch Plate",
+        "Regular Servicing"
+      ],
+      "tag": [
+        "self start problem",
+        "engine problem",
+        "engine mainten",
+        "clutch plate",
+        "regular servic"
+      ],
       "lat": "27.699957",
       "lon": "85.332466"
     },
     {
       "name": "koteshwor",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAI6PxgUEDv6hsJl-rGX2SQI9scpCyXUWjpANwg_2cCumJWEG",
+      "title": "Koteshwor Workshop",
+      "Services": [
+        "Cone Bearing",
+        "Number Plate",
+        "Wheel Bearing",
+        "Tyre",
+        "Tubeless",
+        "Seat Cover"
+      ],
+      "tag": [
+        "cone bear",
+        "number plate",
+        "wheel bear",
+        "tyre",
+        "tubeless",
+        "seat cover"
+      ],
       "lat": "27.67631",
       "lon": "85.34835"
     }
   ]
 }
-
-
-
-

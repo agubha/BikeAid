@@ -1,5 +1,6 @@
 package com.example.bikeaid;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.bikeaid.Model.FirebaseUserModel;
+import com.example.bikeaid.Model.FireBaseUserModel;
+import com.example.bikeaid.Utils.Util;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,18 +34,22 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView slider_image, requestServiceImage, emergencyBreakDownImage, subscriptionPackageImage, bikeAccessoriesImage;
-    private ConstraintLayout constraintLayout;
+    private ConstraintLayout constraintLayout, constraintLayout2;
     private FirebaseAuth auth;
     private DatabaseReference mDatabaseRef;
     private ImageView imageView;
     private StorageReference mStorageRef;
     private Uri uri = null;
     private TextView username;
+    private ConstraintLayout constraintLayout4;
+    private ImageView iconPhone, iconYoutube, iconSetting, iconNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViews();
+        ClickAction();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
@@ -67,7 +73,7 @@ public class MainActivity extends AppCompatActivity
             mDatabaseRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    FirebaseUserModel firebaseUserModel = dataSnapshot.getValue(FirebaseUserModel.class);
+                    FireBaseUserModel firebaseUserModel = dataSnapshot.getValue(FireBaseUserModel.class);
                     if (firebaseUserModel != null) {
                         Picasso.get().load(firebaseUserModel.getUriUserImage()).into(imageView);
                         username.setText(firebaseUserModel.getUsername());
@@ -97,7 +103,72 @@ public class MainActivity extends AppCompatActivity
                 gotoEmergencyBreakdown();
             }
         });
+        constraintLayout4 = findViewById(R.id.constraintLayout4);
+        constraintLayout4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoRequestServicing();
+            }
+        });
+        constraintLayout2 = findViewById(R.id.constraintLayout);
+        constraintLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BuyProducts.class);
+                startActivity(intent);
+            }
+        });
 
+    }
+
+    private void gotoRequestServicing() {
+        Intent intent = new Intent(MainActivity.this, RequestServicing.class);
+        startActivity(intent);
+    }
+
+    private void ClickAction() {
+        iconPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri u = Uri.parse("tel:" + 984111111);
+                Intent i = new Intent(Intent.ACTION_DIAL, u);
+                try {
+                    // Launch the Phone app's dialer with a phone
+                    // number to dial a call.
+                    startActivity(i);
+                } catch (SecurityException s) {
+                    // show() method display the toast with
+                    // exception message.
+                    Util.toast(s.getMessage(), MainActivity.this);
+                }
+            }
+        });
+        iconYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + "xchoFP4apQ4"));
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://www.youtube.com/watch?v=" + "xchoFP4apQ4"));
+                try {
+                    startActivity(appIntent);
+                } catch (ActivityNotFoundException ex) {
+                    startActivity(webIntent);
+                }
+            }
+        });
+        iconSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void findViews() {
+        iconPhone = findViewById(R.id.iconPhone);
+        iconYoutube = findViewById(R.id.iconYoutube);
+        iconSetting = findViewById(R.id.iconSetting);
     }
 
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Window;
 
+import com.example.bikeaid.Adapter.EmergencyProblemListAdapter;
 import com.example.bikeaid.Model.ProblemModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

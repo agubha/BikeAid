@@ -40,7 +40,7 @@
             android:paddingEnd="10dp">
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/iconPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -48,13 +48,13 @@
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/ic_local_phone_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintEnd_toStartOf="@+id/iconYoutube"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/iconYoutube"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -62,13 +62,13 @@
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/ic_youtube_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintEnd_toStartOf="@+id/iconSetting"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintStart_toEndOf="@+id/iconPhone"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/iconSetting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -76,13 +76,13 @@
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/ic_settings_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView9"
+                app:layout_constraintEnd_toStartOf="@+id/iconNotification"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintStart_toEndOf="@+id/iconYoutube"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/iconNotification"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -90,7 +90,7 @@
                 android:src="@drawable/ic_notifications_black_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView8"
+                app:layout_constraintStart_toEndOf="@+id/iconSetting"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
@@ -125,7 +125,7 @@
             android:id="@+id/subpakimg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="14dp"
+            android:layout_margin="36dp"
             android:src="@drawable/ic_settings_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/textView4"
             app:layout_constraintDimensionRatio="1:1"
@@ -163,7 +163,7 @@
             android:id="@+id/bikAccImg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="14dp"
+            android:layout_margin="36dp"
             android:src="@drawable/ic_settings_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintDimensionRatio="1:1"
@@ -202,7 +202,7 @@
             android:id="@+id/reqSerimg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="14dp"
+            android:layout_margin="36dp"
 
             android:src="@drawable/ic_settings_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -242,8 +242,7 @@
             android:id="@+id/emebredwnImg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="14dp"
-
+            android:layout_margin="36dp"
             android:src="@drawable/ic_settings_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintDimensionRatio="1:1"

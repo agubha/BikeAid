@@ -18,7 +18,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.bikeaid.Model.FirebaseUserModel;
+import com.example.bikeaid.Model.FireBaseUserModel;
+import com.example.bikeaid.Utils.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,6 +57,7 @@ public class UserActivity extends AppCompatActivity {
     };
     private ArrayAdapter<String> adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -67,37 +69,23 @@ public class UserActivity extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("UserDetails").child(auth.getUid());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
         setTitle("User Details");
         findViews();
         loadBikeDrop();
-
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    FirebaseUserModel firebaseUserModel = dataSnapshot.getValue(FirebaseUserModel.class);
-                    if (firebaseUserModel != null) {
-                        editUserName.setText(firebaseUserModel.getUsername());
-                        int spinnerPosition = adapter.getPosition(firebaseUserModel.getBikeType());
-                        bikeSpinner.setSelection(spinnerPosition);
-//                    Picasso.get().load(firebaseUserModel.getUriNagrita()).centerCrop().resize(180, 180).into(nagritaPreview);
-//                    Picasso.get().load(firebaseUserModel.getUriBlueBook()).centerCrop().resize(180, 180).into(blueBookPreview);
-//                    Picasso.get().load(firebaseUserModel.getUsername()).centerCrop().resize(180, 180).into(nagritaPreview);
-//                    Picasso.get().load(firebaseUserModel.getUsername()).fit().into(nagritaPreview);
-//                    Picasso.get().load(firebaseUserModel.getUriBlueBook()).fit().into(blueBookPreview);
-//                    Picasso.get().load(firebaseUserModel.getUsername()).fit().into(userImagePreview);
-                        Log.d("IMAGE", "getUriUserImage" + firebaseUserModel.getUriUserImage());
-                        Log.d("IMAGE", "getUriBlueBook" + firebaseUserModel.getUriBlueBook());
-                        Log.d("IMAGE", "getUriNagrita" + firebaseUserModel.getUriNagrita());
-
-                        Picasso.get().load(firebaseUserModel.getUriNagrita()).into(nagritaPreview);
-                        Picasso.get().load(firebaseUserModel.getUriBlueBook()).into(blueBookPreview);
-                        Picasso.get().load(firebaseUserModel.getUriUserImage()).into(userImagePreview);
-                    } else
-                        Toast.makeText(UserActivity.this, "Null Model Received", Toast.LENGTH_SHORT).show();
+                    FireBaseUserModel firebaseUserModel = dataSnapshot.getValue(FireBaseUserModel.class);
+                    editUserName.setText(firebaseUserModel.getUsername());
+                    int spinnerPosition = adapter.getPosition(firebaseUserModel.getBikeType());
+                    bikeSpinner.setSelection(spinnerPosition);
+                    Picasso.get().load(firebaseUserModel.getUriNagrita()).centerCrop().resize(nagritaPreview.getWidth(), nagritaPreview.getHeight()).into(nagritaPreview);
+                    Picasso.get().load(firebaseUserModel.getUriBlueBook()).centerCrop().resize(blueBookPreview.getWidth(), blueBookPreview.getHeight()).into(blueBookPreview);
+                    Picasso.get().load(firebaseUserModel.getUriUserImage()).centerCrop().resize(userImagePreview.getWidth(), userImagePreview.getHeight()).into(userImagePreview);
                 } else
                     Toast.makeText(UserActivity.this, "Null dataSnapShop Received", Toast.LENGTH_SHORT).show();
-
 
             }
 
@@ -136,8 +124,11 @@ public class UserActivity extends AppCompatActivity {
                 } else {
                     getData();
                     if (uploadImage()) {
+                        Log.d("Image Url", "1" + userImageUrlResponse);
+                        Log.d("Image Url", "2" + nagritaImageUrlResponse);
+                        Log.d("Image Url", "3" + blueBookImageUrlResponse);
                         if (UserNameString.length() > 5) {
-                            FirebaseUserModel firebaseUserModel = new FirebaseUserModel(UserNameString, userImageUrlResponse, nagritaImageUrlResponse, blueBookImageUrlResponse, bikeName);
+                            FireBaseUserModel firebaseUserModel = new FireBaseUserModel(UserNameString, userImageUrlResponse, nagritaImageUrlResponse, blueBookImageUrlResponse, bikeName);
                             mDatabaseRef.setValue(firebaseUserModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -157,6 +148,7 @@ public class UserActivity extends AppCompatActivity {
 
 
     }
+
 
     private void findViews() {
         bikeSpinner = findViewById(R.id.spinner_bike);
@@ -218,13 +210,13 @@ public class UserActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CHOOSE_IMAGE_USERIMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             userImageUrl = data.getData();
-            Picasso.get().load(userImageUrl).centerInside().resize(200, 200).into(userImagePreview);
+            Picasso.get().load(userImageUrl).centerCrop().resize(userImagePreview.getWidth(), userImagePreview.getHeight()).into(userImagePreview);
         } else if (requestCode == CHOOSE_IMAGE_NAGRITA && resultCode == RESULT_OK && data != null && data.getData() != null) {
             nagritaImageUrl = data.getData();
-            Picasso.get().load(nagritaImageUrl).centerInside().resize(200, 200).into(nagritaPreview);
+            Picasso.get().load(nagritaImageUrl).centerCrop().resize(nagritaPreview.getWidth(), nagritaPreview.getHeight()).into(nagritaPreview);
         } else if (requestCode == CHOOSE_IMAGE_BLUEBOOK && resultCode == RESULT_OK && data != null && data.getData() != null) {
             blueBookImageUrl = data.getData();
-            Picasso.get().load(blueBookImageUrl).centerInside().resize(200, 200).into(blueBookPreview);
+            Picasso.get().load(blueBookImageUrl).centerCrop().resize(blueBookPreview.getWidth(), blueBookPreview.getHeight()).into(blueBookPreview);
         }
 
     }
@@ -240,17 +232,21 @@ public class UserActivity extends AppCompatActivity {
     private boolean uploadImage() {
         status = true;
         if (userImageUrl != null) {
-            final StorageReference fileReference = mStorageRef.child(auth.getUid() + "-userImage");
-            mUploadTask = fileReference.putFile(userImageUrl)
+            final StorageReference userImageUrlResponseref = mStorageRef.child(auth.getUid() + "-userImage");
+            mUploadTask = userImageUrlResponseref.putFile(userImageUrl)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    userImageUrlResponse = uri;
-                                }
-                            });
+                            userImageUrlResponse = taskSnapshot.getMetadata().getReference().getDownloadUrl().getResult();
+                            Log.d("userImageUrlResponse", "" + userImageUrlResponse);
+//                            userImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//
+//                                    userImageUrlResponse = uri;
+//                                    Log.d("userImageUrlResponse", "" + userImageUrlResponse);
+//                                }
+//                            });
 
 
                         }
@@ -258,25 +254,30 @@ public class UserActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            Util.toast(e.getLocalizedMessage(), UserActivity.this);
                             status = false;
                         }
                     });
         } else {
+            Log.d("If Not Running", "userImageUrl");
             Toast.makeText(UserActivity.this, "No file selected", Toast.LENGTH_SHORT).show();
         }
         if (nagritaImageUrl != null) {
-            final StorageReference fileReference = mStorageRef.child(auth.getUid() + "-nagritaImage");
+            final StorageReference nagritaImageUrlResponseref = mStorageRef.child(auth.getUid() + "-nagritaImage");
 
-            mUploadTask = fileReference.putFile(nagritaImageUrl)
+            mUploadTask = nagritaImageUrlResponseref.putFile(nagritaImageUrl)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    nagritaImageUrlResponse = uri;
-                                }
-                            });
+                            nagritaImageUrlResponse = taskSnapshot.getMetadata().getReference().getDownloadUrl().getResult();
+                            Log.d("nagritaImageUrlResponse", "" + nagritaImageUrlResponse);
+//                            nagritaImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    nagritaImageUrlResponse = uri;
+//                                    Log.d("nagritaImageUrlResponse-", "" + blueBookImageUrlResponse);
+//                                }
+//                            });
 
 
                         }
@@ -284,26 +285,29 @@ public class UserActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            Util.toast(e.getLocalizedMessage(), UserActivity.this);
                             status = false;
                         }
                     });
         } else {
+            Log.d("If Not Running", "nagritaImageUrl");
             Toast.makeText(UserActivity.this, "No file selected", Toast.LENGTH_SHORT).show();
         }
         if (blueBookImageUrl != null) {
-            final StorageReference fileReference = mStorageRef.child(auth.getUid() + "-blueBookImage");
+            final StorageReference blueBookImageUrlResponseref = mStorageRef.child(auth.getUid() + "-blueBookImage");
 
-            mUploadTask = fileReference.putFile(blueBookImageUrl)
+            mUploadTask = blueBookImageUrlResponseref.putFile(blueBookImageUrl)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    blueBookImageUrlResponse = uri;
-
-                                }
-                            });
+                            Util.toast(taskSnapshot.getMetadata().toString(), UserActivity.this);
+//                            blueBookImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    blueBookImageUrlResponse = uri;
+//                                    Log.d("blueBookImageUrlResponse-", "" + blueBookImageUrlResponse);
+//                                }
+//                            });
 
 
                         }
@@ -311,11 +315,13 @@ public class UserActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            Util.toast(e.getLocalizedMessage(), UserActivity.this);
                             status = false;
                         }
                     });
         } else {
-            Toast.makeText(UserActivity.this, "No file selected", Toast.LENGTH_SHORT).show();
+            Log.d("If Not Running", "blueBookImageUrl");
+            Util.toast("No File Selected", UserActivity.this);
         }
         return status;
     }

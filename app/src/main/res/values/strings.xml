@@ -156,4 +156,5 @@ Miami,700,460
     <string name="login">Login</string>
     <string name="emergency">Emergency BreakDown</string>
     <string name="user">User</string>
+    <string name="title_activity_cosine_similarity_map">Map</string>
 </resources>

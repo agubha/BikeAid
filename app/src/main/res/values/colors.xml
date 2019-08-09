@@ -24,4 +24,6 @@
     <color name="btn_logut_bg">#ff6861</color>
     <color name="red500">#f44336</color>
     <color name="green400">#66bb6a</color>
+    <color name="green800">#2e7d32</color>
+    <color name="blue">#4422ee</color>
 </resources>

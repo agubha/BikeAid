@@ -3,16 +3,30 @@ package com.example.bikeaid.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Locations {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("Services")
+    @Expose
+    private List<String> services = null;
+    @SerializedName("tag")
+    @Expose
+    private List<String> tag = null;
     @SerializedName("lat")
     @Expose
     private String lat;
     @SerializedName("lon")
     @Expose
-    private String _long;
+    private String lon;
 
     public String getName() {
         return name;
@@ -20,6 +34,38 @@ public class Locations {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<String> getServices() {
+        return services;
+    }
+
+    public void setServices(List<String> services) {
+        this.services = services;
+    }
+
+    public List<String> getTag() {
+        return tag;
+    }
+
+    public void setTag(List<String> tag) {
+        this.tag = tag;
     }
 
     public String getLat() {
@@ -30,11 +76,11 @@ public class Locations {
         this.lat = lat;
     }
 
-    public String getLong() {
-        return _long;
+    public String getLon() {
+        return lon;
     }
 
-    public void setLong(String _long) {
-        this._long = _long;
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 }

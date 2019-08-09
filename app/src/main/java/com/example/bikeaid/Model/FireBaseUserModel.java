@@ -2,18 +2,17 @@ package com.example.bikeaid.Model;
 
 import android.net.Uri;
 
-public class FirebaseUserModel {
+public class FireBaseUserModel {
     private String username;
     private String uriUserImage;
     private String uriNagrita;
     private String uriBlueBook;
     private String bikeType;
 
-    public FirebaseUserModel() {
-
+    public FireBaseUserModel() {
     }
 
-    public FirebaseUserModel(String username, Uri uriUserImage, Uri uriNagrita, Uri uriBlueBook, String bikeType) {
+    public FireBaseUserModel(String username, Uri uriUserImage, Uri uriNagrita, Uri uriBlueBook, String bikeType) {
         this.username = username;
         this.uriUserImage = String.valueOf(uriUserImage);
         this.uriNagrita = String.valueOf(uriNagrita);

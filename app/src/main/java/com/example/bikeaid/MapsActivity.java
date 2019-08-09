@@ -85,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         cities = loadcitiesJson();
         pairLists = loadpairjson();
-        createLists();
+//        createLists();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -93,22 +93,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         constraintLayout = findViewById(R.id.constraintLayout);
         if (getIntents()) {
             //intent from activity
-            TextView textname = findViewById(R.id.title);
-            TextView textPrie = findViewById(R.id.price);
+            TextView textname = findViewById(R.id.productTitle);
+            TextView textPrie = findViewById(R.id.productPrice);
             ImageView imageView = findViewById(R.id.imageView3);
             textname.setText(name);
             textPrie.setText("Rs. " + price);
             Picasso.get().load(img).into(imageView);
-
-
         } else
             constraintLayout.setVisibility(View.GONE);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        //location changes tracker
-        //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER
     }
 
     private boolean getIntents() {
@@ -182,12 +178,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         List<LatLng> latLngList = new ArrayList<>();
         List<Locations> locationsList = createList();
 
-        Log.d("LocationSize:", "" + locationsList.size());
-        Log.d("LocationSize:", "" + locationsList.get(0).getLong() + locationsList.get(0).getLat());
         Marker[] marker = new Marker[locationsList.size()];
         for (int i = 0; i < locationsList.size(); i++) {
             double lat = Double.parseDouble(locationsList.get(i).getLat());
-            double lon = Double.parseDouble(locationsList.get(i).getLong());
+            double lon = Double.parseDouble(locationsList.get(i).getLon());
             LatLng hospital = new LatLng(lat, lon);
             marker[i] = createMarker(lat, lon, locationsList.get(i).getName(), "", R.drawable.ic_directions_bike_black_24dp);
             markerlist.add(mMap.addMarker(new MarkerOptions().position(hospital).title(locationsList.get(i).getName())));
@@ -207,31 +201,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationManager.removeUpdates(this);
     }
 
-    private void createLists() {
-        Gson gson = new Gson();
-        Type type = new TypeToken<OverAllListOfRouting>() {
-        }.getType();
-        OverAllListOfRouting problemModels = gson.fromJson(loadjsonfromrawrouting(), type);
+//    private void createLists() {
+//        Gson gson = new Gson();
+//        Type type = new TypeToken<OverAllListOfRouting>() {
+//        }.getType();
+//        OverAllListOfRouting problemModels = gson.fromJson(loadjsonfromrawrouting(), type);
+//
+////        emergencyProblemListAdapter.setList(problemModels);
+//    }
 
-//        emergencyProblemListAdapter.setList(problemModels);
-    }
-
-    private String loadjsonfromrawrouting() {
-        String json = null;
-        try {
-            InputStream is = getResources().openRawResource(R.raw.workshoppathing);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, StandardCharsets.UTF_8);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        Log.d("OUTPUT", "1111" + json);
-        return json;
-    }
+//    private String loadjsonfromrawrouting() {
+//        String json = null;
+//        try {
+//            InputStream is = getResources().openRawResource(R.raw.workshoppathing);
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//            json = new String(buffer, StandardCharsets.UTF_8);
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//        Log.d("OUTPUT", "1111" + json);
+//        return json;
+//    }
 
 //    private class loaddataevery5sec extends AsyncTask<Void, Void, Void> {
 //        private String start2;
@@ -303,8 +297,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.e("Draw Line", "got null as parameters");
             return;
         }
-
-
         line = mMap.addPolyline(new PolylineOptions().width(3).color(Color.RED));
         line.setPoints(path);
     }
