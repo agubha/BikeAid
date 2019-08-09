@@ -127,7 +127,7 @@
         "Mobil Change",
         "filter",
         "Engine Maintenance",
-        "Half Full Engine",
+        "Half Full Engine"
       ],
       "tag": [
         "regular servic",
@@ -225,7 +225,8 @@
       "name": "Hamro Workshop",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM0UldWf6SWuy-xjdbBQIK2ZzLjYXUXBT43BXAXYHYwtuSzfwp",
       "title": "ABC WORKSHOP",
-      "Services": [ "Pick and Drop Service",
+      "Services": [
+        "Pick and Drop Service",
         "Number Plate",
         "Air Mobil Filter",
         "Seat Cover"
