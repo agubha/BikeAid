@@ -11,36 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/userImagePreview"
+        <android.support.v7.widget.CardView
+            android:id="@+id/userImagePreview2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="28dp"
-            android:src="@drawable/ic_image_black_24dp"
+            android:layout_margin="20dp"
             app:layout_constraintDimensionRatio="1:.8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/userImagePreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-        <Button
-            android:id="@+id/btnUploadImage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:drawableLeft="@drawable/ic_cloud_upload_black_24dp"
-            android:text="Update Details"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/blueBookPreview"
-            app:layout_constraintVertical_bias="1.0" />
+                android:src="@drawable/ic_image_black_24dp"
+                app:layout_constraintDimensionRatio="1:.8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.v7.widget.CardView>
+
 
         <View
             android:id="@+id/viewSeperator"
@@ -49,7 +41,7 @@
             android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userImagePreview"
+            app:layout_constraintTop_toBottomOf="@+id/userImagePreview2"
             tools:layout_editor_absoluteY="340dp" />
 
         <EditText
@@ -73,8 +65,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editUserName" />
 
-        <ImageView
-            android:id="@+id/nagritaPreview"
+        <android.support.v7.widget.CardView
+            android:id="@+id/nagritaPreview2"
+
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
@@ -84,19 +77,45 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_bike" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_bike">
 
-        <ImageView
-            android:id="@+id/blueBookPreview"
+            <ImageView
+                android:id="@+id/nagritaPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_image_black_24dp"
+                app:layout_constraintDimensionRatio="1:.8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_bike" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/blueBookPreview2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_image_black_24dp"
             app:layout_constraintDimensionRatio="1:.8"
             app:layout_constraintEnd_toStartOf="@+id/textView7"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nagritaPreview" />
+            app:layout_constraintTop_toBottomOf="@+id/nagritaPreview2">
+
+            <ImageView
+                android:id="@+id/blueBookPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_image_black_24dp"
+                app:layout_constraintDimensionRatio="1:.8"
+                app:layout_constraintEnd_toStartOf="@+id/textView7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nagritaPreview2" />
+        </android.support.v7.widget.CardView>
 
         <TextView
             android:id="@+id/textView6"
@@ -106,10 +125,10 @@
             android:text="Select Driving Licence  Image"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/nagritaPreview"
-            app:layout_constraintEnd_toStartOf="@+id/nagritaPreview"
+            app:layout_constraintBottom_toBottomOf="@+id/nagritaPreview2"
+            app:layout_constraintEnd_toStartOf="@+id/nagritaPreview2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nagritaPreview" />
+            app:layout_constraintTop_toTopOf="@+id/nagritaPreview2" />
 
         <TextView
             android:id="@+id/textView7"
@@ -119,10 +138,28 @@
             android:text="Select Blue Book Image"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/blueBookPreview"
+            app:layout_constraintBottom_toBottomOf="@+id/blueBookPreview2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/blueBookPreview"
-            app:layout_constraintTop_toTopOf="@+id/blueBookPreview" />
+            app:layout_constraintStart_toEndOf="@+id/blueBookPreview2"
+            app:layout_constraintTop_toTopOf="@+id/blueBookPreview2" />
+
+        <Button
+            android:id="@+id/btnUploadImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_cloud_upload_black_24dp"
+            android:text="Update Details"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blueBookPreview2"
+            app:layout_constraintVertical_bias="1.0" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

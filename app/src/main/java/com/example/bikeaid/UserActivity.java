@@ -19,9 +19,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.bikeaid.Model.FireBaseUserModel;
+import com.example.bikeaid.Model.Upload;
 import com.example.bikeaid.Utils.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,8 +48,9 @@ public class UserActivity extends AppCompatActivity {
     private Spinner bikeSpinner;
     private String bikeName;
     private Uri userImageUrl, nagritaImageUrl, blueBookImageUrl;
+    private Intent userImageData, nagritaImageData, bluebookData;
     private Uri userImageUrlResponse = null, nagritaImageUrlResponse = null, blueBookImageUrlResponse = null;
-    private StorageTask mUploadTask;
+    private StorageTask<UploadTask.TaskSnapshot> mUploadTask;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     String[] arraySpinner = new String[]{
@@ -123,32 +124,31 @@ public class UserActivity extends AppCompatActivity {
                     Toast.makeText(UserActivity.this, "Upload in progress", Toast.LENGTH_LONG).show();
                 } else {
                     getData();
-                    if (uploadImage()) {
-                        Log.d("Image Url", "1" + userImageUrlResponse);
-                        Log.d("Image Url", "2" + nagritaImageUrlResponse);
-                        Log.d("Image Url", "3" + blueBookImageUrlResponse);
-                        if (UserNameString.length() > 5) {
-                            FireBaseUserModel firebaseUserModel = new FireBaseUserModel(UserNameString, userImageUrlResponse, nagritaImageUrlResponse, blueBookImageUrlResponse, bikeName);
-                            mDatabaseRef.setValue(firebaseUserModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(UserActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
-                                    } else
-                                        Toast.makeText(UserActivity.this, "Failure!!!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-//
-                        //add to database
+
+                    Log.d("Image Url", "1" + userImageUrlResponse);
+                    Log.d("Image Url", "2" + nagritaImageUrlResponse);
+                    Log.d("Image Url", "3" + blueBookImageUrlResponse);
+                    if (UserNameString.length() > 5) {
+                        FireBaseUserModel fireBaseUserModel =
+                                new FireBaseUserModel(UserNameString, userImageUrlResponse, nagritaImageUrlResponse, blueBookImageUrlResponse, bikeName);
+
+                        uploadImage(fireBaseUserModel);
+                        mDatabaseRef.setValue(fireBaseUserModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(UserActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
+                                } else
+                                    Toast.makeText(UserActivity.this, "Failure!!!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }
+//
+                //add to database
             }
         });
-
-
     }
-
 
     private void findViews() {
         bikeSpinner = findViewById(R.id.spinner_bike);
@@ -160,8 +160,6 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void loadBikeDrop() {
-
-
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -229,66 +227,67 @@ public class UserActivity extends AppCompatActivity {
 
     private boolean status;
 
-    private boolean uploadImage() {
+    private boolean uploadImage(FireBaseUserModel fireBaseUserModel) {
         status = true;
         if (userImageUrl != null) {
             final StorageReference userImageUrlResponseref = mStorageRef.child(auth.getUid() + "-userImage");
-            mUploadTask = userImageUrlResponseref.putFile(userImageUrl)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            userImageUrlResponse = taskSnapshot.getMetadata().getReference().getDownloadUrl().getResult();
-                            Log.d("userImageUrlResponse", "" + userImageUrlResponse);
-//                            userImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//
-//                                    userImageUrlResponse = uri;
-//                                    Log.d("userImageUrlResponse", "" + userImageUrlResponse);
-//                                }
-//                            });
+            UploadTask uploadTask = userImageUrlResponseref.putFile(userImageUrl);
+            uploadTask.addOnFailureListener(e -> {
+                Util.toast(e.getLocalizedMessage(), UserActivity.this);
+                status = false;
+            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
 
 
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Util.toast(e.getLocalizedMessage(), UserActivity.this);
-                            status = false;
-                        }
-                    });
-        } else {
-            Log.d("If Not Running", "userImageUrl");
-            Toast.makeText(UserActivity.this, "No file selected", Toast.LENGTH_SHORT).show();
+                        userImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Log.d("OnComplete1", "true" + uri);
+                                userImageUrlResponse = uri;
+                                fireBaseUserModel.setUriUserImage(userImageUrlResponse.toString());
+                                mDatabaseRef.setValue(fireBaseUserModel);
+                            }
+                        });
+
+                    }
+//                Log.d("userImageUrlResponse", "" + userImageUrlResponse);
+//                userImageUrlResponseref.getDownloadUrl().addOnSuccessListener(uri -> {
+//                    userImageUrlResponse = uri;
+//                    Log.d("userImageUrl", "" + userImageUrlResponse);
+//                });
+                }
+            });
         }
         if (nagritaImageUrl != null) {
             final StorageReference nagritaImageUrlResponseref = mStorageRef.child(auth.getUid() + "-nagritaImage");
 
-            mUploadTask = nagritaImageUrlResponseref.putFile(nagritaImageUrl)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            mUploadTask = nagritaImageUrlResponseref.putFile(nagritaImageUrl);
+            mUploadTask.addOnFailureListener(e -> {
+                Util.toast(e.getLocalizedMessage(), UserActivity.this);
+                status = false;
+            }).addOnCompleteListener(taskSnapshot -> {
+                if (taskSnapshot.isSuccessful()) {
+                    nagritaImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            nagritaImageUrlResponse = taskSnapshot.getMetadata().getReference().getDownloadUrl().getResult();
-                            Log.d("nagritaImageUrlResponse", "" + nagritaImageUrlResponse);
-//                            nagritaImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    nagritaImageUrlResponse = uri;
-//                                    Log.d("nagritaImageUrlResponse-", "" + blueBookImageUrlResponse);
-//                                }
-//                            });
-
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Util.toast(e.getLocalizedMessage(), UserActivity.this);
-                            status = false;
+                        public void onSuccess(Uri uri) {
+                            Log.d("OnComplete1", "true" + uri);
+                            nagritaImageUrlResponse = uri;
+                            fireBaseUserModel.setUriNagrita(nagritaImageUrlResponse.toString());
+                            mDatabaseRef.setValue(fireBaseUserModel);
                         }
                     });
+
+
+                }
+//                Log.d("nagritaImageUrlResponse", "" + nagritaImageUrlResponse);
+//                nagritaImageUrlResponseref.getDownloadUrl().addOnSuccessListener(uri -> {
+//                    nagritaImageUrlResponse = uri;
+//                    Log.d("nagritaImageUrl-", "" + blueBookImageUrlResponse);
+//                });
+            });
+
         } else {
             Log.d("If Not Running", "nagritaImageUrl");
             Toast.makeText(UserActivity.this, "No file selected", Toast.LENGTH_SHORT).show();
@@ -296,29 +295,30 @@ public class UserActivity extends AppCompatActivity {
         if (blueBookImageUrl != null) {
             final StorageReference blueBookImageUrlResponseref = mStorageRef.child(auth.getUid() + "-blueBookImage");
 
-            mUploadTask = blueBookImageUrlResponseref.putFile(blueBookImageUrl)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            mUploadTask = blueBookImageUrlResponseref.putFile(blueBookImageUrl);
+            mUploadTask.addOnFailureListener(e -> {
+                Util.toast(e.getLocalizedMessage(), UserActivity.this);
+                status = false;
+            }).addOnCompleteListener(taskSnapshot -> {
+                if (taskSnapshot.isSuccessful()) {
+                    blueBookImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Util.toast(taskSnapshot.getMetadata().toString(), UserActivity.this);
-//                            blueBookImageUrlResponseref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    blueBookImageUrlResponse = uri;
-//                                    Log.d("blueBookImageUrlResponse-", "" + blueBookImageUrlResponse);
-//                                }
-//                            });
-
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Util.toast(e.getLocalizedMessage(), UserActivity.this);
-                            status = false;
+                        public void onSuccess(Uri uri) {
+                            Log.d("OnComplete1", "true" + uri);
+                            blueBookImageUrlResponse = uri;
+                            fireBaseUserModel.setUriBlueBook(blueBookImageUrlResponse.toString());
+                            mDatabaseRef.setValue(fireBaseUserModel);
                         }
                     });
+
+
+                }
+//                Util.toast(taskSnapshot.getMetadata().toString(), UserActivity.this);
+//                blueBookImageUrlResponseref.getDownloadUrl().addOnSuccessListener(uri -> {
+//                    blueBookImageUrlResponse = uri;
+//                    Log.d("blueBookImageUrl-", "" + blueBookImageUrlResponse);
+//                });
+            });
         } else {
             Log.d("If Not Running", "blueBookImageUrl");
             Util.toast("No File Selected", UserActivity.this);
